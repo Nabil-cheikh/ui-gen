@@ -9,6 +9,7 @@
     "start": "NODE_OPTIONS='--require ./node-compat.cjs' next start",
     "lint": "next lint",
     "test": "vitest",
+    "test:e2e": "playwright test",
     "setup": "npm install && npx prisma generate && npx prisma migrate dev",
     "db:reset": "npx prisma migrate reset --force"
   },
