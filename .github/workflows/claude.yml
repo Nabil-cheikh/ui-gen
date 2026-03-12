@@ -56,10 +56,18 @@ jobs:
             The project is already set up with all dependencies installed.
             The server is already running at localhost:3000. Logs from it
             are being written to logs.txt. If needed, you can query the
-            db with the 'sqlite3' cli. You MUST use the mcp__playwright
-            tools to launch a browser, navigate to the app, and interact
-            with it. Start by calling mcp__playwright__browser_navigate
-            to open localhost:3000.
+            db with the 'sqlite3' cli.
+
+            CRITICAL: You MUST use Playwright MCP tools to verify any UI
+            behavior. Do NOT write unit tests or RTL tests as a substitute
+            for browser testing. Always start by calling
+            mcp__playwright__browser_navigate to open http://localhost:3000,
+            then use mcp__playwright__browser_snapshot and
+            mcp__playwright__browser_click to inspect and interact with the
+            page. Use mcp__playwright__browser_take_screenshot to capture
+            visual evidence of your findings. Your response must include
+            observations from actual browser interaction, not just code
+            analysis.
           
           mcp_config: |
             {
