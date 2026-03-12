@@ -52,18 +52,20 @@ UIGen is an AI-powered React component generator with live preview. Users descri
 ### Path Alias
 `@/*` maps to `./src/*` (tsconfig paths). In the virtual FS used by generated components, `@/` maps to the virtual root `/`.
 
-## CI / GitHub Actions — Playwright MCP
+## CI / GitHub Actions
 
-When running in CI (GitHub Actions), you have access to Playwright MCP tools for browser interaction. These are tool calls you make directly — NOT the `@playwright/test` npm package.
+In CI, the project is already set up and the dev server runs at `http://localhost:3000`.
 
-**DO NOT** install `@playwright/test` or write `.spec.ts` test files. Instead, call the MCP tools directly:
-- `mcp__playwright__browser_navigate` — open a URL (start with `http://localhost:3000`)
-- `mcp__playwright__browser_snapshot` — get the page's accessibility tree
-- `mcp__playwright__browser_click` — click an element
-- `mcp__playwright__browser_take_screenshot` — capture a screenshot
-- `mcp__playwright__browser_fill_form`, `mcp__playwright__browser_type`, etc.
+You have Playwright MCP tools available as **direct tool calls** — these are NOT the `@playwright/test` npm package. **DO NOT** run `npm install @playwright/test` or write `.spec.ts` test files.
 
-When asked to verify, test, or check UI behavior, you MUST use these MCP tool calls to interact with the running app at localhost:3000. Do not substitute with code analysis or writing test files.
+When asked to verify, test, or check UI behavior, you MUST:
+
+1. Call `mcp__playwright__browser_navigate` with url `http://localhost:3000`
+2. Call `mcp__playwright__browser_snapshot` to read the page
+3. Call `mcp__playwright__browser_click` to interact with elements
+4. Call `mcp__playwright__browser_take_screenshot` to capture evidence
+
+Base your response on what you actually see in the browser, not code analysis.
 
 ## Code Style
 
