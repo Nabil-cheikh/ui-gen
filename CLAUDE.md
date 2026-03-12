@@ -52,6 +52,19 @@ UIGen is an AI-powered React component generator with live preview. Users descri
 ### Path Alias
 `@/*` maps to `./src/*` (tsconfig paths). In the virtual FS used by generated components, `@/` maps to the virtual root `/`.
 
+## CI / GitHub Actions — Playwright MCP
+
+When running in CI (GitHub Actions), you have access to Playwright MCP tools for browser interaction. These are tool calls you make directly — NOT the `@playwright/test` npm package.
+
+**DO NOT** install `@playwright/test` or write `.spec.ts` test files. Instead, call the MCP tools directly:
+- `mcp__playwright__browser_navigate` — open a URL (start with `http://localhost:3000`)
+- `mcp__playwright__browser_snapshot` — get the page's accessibility tree
+- `mcp__playwright__browser_click` — click an element
+- `mcp__playwright__browser_take_screenshot` — capture a screenshot
+- `mcp__playwright__browser_fill_form`, `mcp__playwright__browser_type`, etc.
+
+When asked to verify, test, or check UI behavior, you MUST use these MCP tool calls to interact with the running app at localhost:3000. Do not substitute with code analysis or writing test files.
+
 ## Code Style
 
 - Use comments sparingly. Only comment complex code.

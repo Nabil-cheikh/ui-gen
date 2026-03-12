@@ -58,16 +58,23 @@ jobs:
             are being written to logs.txt. If needed, you can query the
             db with the 'sqlite3' cli.
 
-            CRITICAL: You MUST use Playwright MCP tools to verify any UI
-            behavior. Do NOT write unit tests or RTL tests as a substitute
-            for browser testing. Always start by calling
-            mcp__playwright__browser_navigate to open http://localhost:3000,
-            then use mcp__playwright__browser_snapshot and
-            mcp__playwright__browser_click to inspect and interact with the
-            page. Use mcp__playwright__browser_take_screenshot to capture
-            visual evidence of your findings. Your response must include
-            observations from actual browser interaction, not just code
-            analysis.
+            CRITICAL REQUIREMENT — READ CAREFULLY:
+            You have Playwright MCP tools available as DIRECT TOOL CALLS.
+            These are NOT the @playwright/test npm package. Do NOT run
+            "npm install @playwright/test" or write .spec.ts files.
+
+            Instead, call these tools directly (they are in your tool list):
+            1. mcp__playwright__browser_navigate — to open http://localhost:3000
+            2. mcp__playwright__browser_snapshot — to read the page content
+            3. mcp__playwright__browser_click — to click elements
+            4. mcp__playwright__browser_take_screenshot — to capture evidence
+
+            Your FIRST action must be:
+              tool: mcp__playwright__browser_navigate
+              url: http://localhost:3000
+
+            Then use snapshot and click to interact with the page.
+            Base your response on what you actually see in the browser.
           
           mcp_config: |
             {
